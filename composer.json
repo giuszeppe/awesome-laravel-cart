@@ -1,0 +1,26 @@
+{
+    "name": "giuszeppe/awesome-laravel-cart",
+    "description": "A shopping Cart defined for Laravel",
+    "type": "library",
+    "autoload": {
+        "psr-4": {
+            "Giuszeppe\\AwesomeLaravelCart": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Giuszeppe",
+            "email": "giuseppe@mwspace.com"
+        }
+    ],
+    "require": {
+        "guzzlehttp/guzzle": "^7.0.1"
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Giuszeppe\\Cart\\CartProvider"
+            ]
+        }
+    }
+}
