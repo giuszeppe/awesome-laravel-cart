@@ -17,6 +17,7 @@ class CreateCartItemsTable extends Migration
         Schema::create(config('cart.pivot_table'), function (Blueprint $table) {
             $table->unsignedBigInteger(config('cart.table') . '_id');
             $table->unsignedBigInteger(config('cart.item_table') . '_id');
+            $table->integer("qta")->default(1);
             $table->timestamps();
         });
     }
