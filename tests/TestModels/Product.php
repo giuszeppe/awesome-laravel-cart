@@ -11,6 +11,8 @@ class Product extends CartItem
 {
     use HasFactory;
 
+    protected $table = 'products';
+
 
 
     protected static function newFactory()
@@ -20,6 +22,6 @@ class Product extends CartItem
 
     public function carts()
     {
-        return $this->belongsToMany(Cart::class, 'products');
+        return $this->belongsToMany(Cart::class, config('cart.pivot_table'),  config('cart.item_table') . '_id', config('cart.table') . '_id');
     }
 }

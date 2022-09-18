@@ -13,9 +13,9 @@ class ProductTest extends TestCase
     /** @test */
     function a_product_has_a_name()
     {
-        $product = Product::factory()->create([
-            'name' => "Benzodiazepina"
-        ]);
-        $this->assertEquals($product->name, 'Benzodiazepina');
+        $product = Product::factory()->create();
+        $product->name = "Ez";
+        $product->save();
+        $this->assertEquals($product->name, 'Ez');
     }
 }

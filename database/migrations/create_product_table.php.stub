@@ -13,10 +13,9 @@ class CreateProductsTable extends Migration
      */
     public function up()
     {
-        
-        Schema::create("products", function (Blueprint $table) {
+        Schema::create(config('cart.item_table'), function (Blueprint $table) {
             $table->id();
-            $table->text('name');
+            $table->text('name')->nullable();
             $table->timestamps();
         });
     }

@@ -20,6 +20,6 @@ class Cart extends Model
     }
     public function products()
     {
-        return $this->belongsToMany(CartItem::class, 'products');
+        return $this->belongsToMany(CartItem::class, config('cart.pivot_table'), config('cart.table') . '_id', config('cart.item_table') . '_id');
     }
 }
