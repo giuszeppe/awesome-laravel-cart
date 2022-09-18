@@ -1,26 +1,34 @@
 {
-    "name": "giuszeppe/awesome-laravel-cart",
-    "description": "A shopping Cart defined for Laravel",
-    "type": "library",
-    "autoload": {
-        "psr-4": {
-            "Giuszeppe\\AwesomeLaravelCart\\": "src/"
-        }
-    },
-    "authors": [
-        {
-            "name": "Giuszeppe",
-            "email": "giuseppe@mwspace.com"
-        }
-    ],
-    "require": {
-        "guzzlehttp/guzzle": "^7.0.1"
-    },
-    "extra": {
-        "laravel": {
-            "providers": [
-                "Giuszeppe\\Cart\\CartProvider"
-            ]
-        }
-    }
+	"name": "giuszeppe/awesome-laravel-cart",
+	"description": "A shopping Cart defined for Laravel",
+	"license": "MIT",
+	"version": "1.0.0",
+	"type": "library",
+	"autoload": {
+		"psr-4": {
+			"Giuszeppe\\AwesomeLaravelCart\\": "src/",
+			"Giuszeppe\\AwesomeLaravelCart\\Tests\\": "tests",
+			"Giuszeppe\\AwesomeLaravelCart\\Database\\Factories\\": "database/factories"
+		}
+	},
+	"authors": [
+		{
+			"name": "Giuszeppe",
+			"email": "giuseppe@mwspace.com"
+		}
+	],
+	"require": {
+		"guzzlehttp/guzzle": "^7.0.1",
+		"orchestra/testbench": "^7.7"
+	},
+	"extra": {
+		"laravel": {
+			"providers": [
+				"Giuszeppe\\AwesomeLaravelCart\\Providers\\CartProvider"
+			]
+		}
+	},
+	"require-dev": {
+		"phpunit/phpunit": "^9.5"
+	}
 }
