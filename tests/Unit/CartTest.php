@@ -40,4 +40,28 @@ class CartTest extends TestCase
         $cart->products()->detach([1, 2, 3]);
         $this->assertEmpty($cart->products);
     }
+    /** @test */
+    function cart_handles_quantity()
+    {
+        $cart = Cart::factory()
+            ->has(Product::factory())
+            ->create();
+        $this->assertEquals($cart->products[0]->pivot->qta, 1);
+    }
+    /** @test */
+    function quantity_does_increment()
+    {
+        $cart = Cart::factory()
+            ->has(Product::factory())
+            ->create();
+        $this->assertEquals($cart->products[0]->pivot->qta, 1);
+    }
+    /** @test */
+    function quantity_decrement()
+    {
+        $cart = Cart::factory()
+            ->has(Product::factory())
+            ->create();
+        $this->assertEquals($cart->products[0]->pivot->qta, 1);
+    }
 }
