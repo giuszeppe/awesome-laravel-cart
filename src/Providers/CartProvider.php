@@ -2,6 +2,7 @@
 
 namespace Giuszeppe\AwesomeLaravelCart\Providers;
 
+use Giuszeppe\AwesomeLaravelCart\Models\Cart;
 use Giuszeppe\Cart\CartItem;
 use Illuminate\Support\ServiceProvider;
 
@@ -14,6 +15,10 @@ class CartProvider extends ServiceProvider
      */
     public function boot()
     {
+        // Product Facade
+        $this->app->bind('item', function ($app) {
+            return new (config('cart.item'))();
+        });
         // Load Routes
         $this->loadRoutesFrom(__DIR__ . '/../routes/web.php');
 
@@ -36,7 +41,7 @@ class CartProvider extends ServiceProvider
             // Publish the migration
             if (!class_exists('CreateCartTable')) {
                 $this->publishes([
-                    __DIR__ . '/../../database/migrations/create_cart_table.php.stub' => database_path('migrations/' . date('Y_m_d_His', time()) . '_create_carts_table.php'),
+                    __DIR__ . '/../../database/migrations/create_carts_table.php.stub' => database_path('migrations/' . date('Y_m_d_His', time()) . '_create_carts_table.php'),
                     __DIR__ . '/../../database/migrations/create_cart_items_table.php.stub' => database_path('migrations/' . date('Y_m_d_His', time()) . '_create_cart_items_table.php'),
                     __DIR__ . '/../../database/migrations/create_products_table.php.stub' => database_path('migrations/' . date('Y_m_d_His', time()) . '_create_products_table.php'),
                     // you can add any number of migrations here
