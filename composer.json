@@ -23,9 +23,6 @@
 	},
 	"extra": {
 		"laravel": {
-			"providers": [
-				"Giuszeppe\\AwesomeLaravelCart\\Providers\\CartProvider"
-			],
 			"aliases": {
 				"Item": "Giuszeppe\\AwesomeLaravelCart\\Facades\\Item"
 			}
