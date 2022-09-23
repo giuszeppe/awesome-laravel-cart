@@ -11,9 +11,6 @@ class CartController extends Controller
 {
     public function index()
     {
-        if (Auth::check()) {
-            $items = auth()->user()->cart->products;
-        }
-        return view(config('cart.cart_view'), ["items" => $items ?? []]);
+        return view(config('cart.cart_view'), ["items" => auth()->user()->cart->products]);
     }
 }
