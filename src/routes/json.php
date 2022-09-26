@@ -6,6 +6,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::controller(JsonCartController::class)->group(function () {
     Route::get('items',  'index');
-    Route::post('addToCart/{item}',  'addToCart');
-    Route::post('removeFromCart/{item}',  'removeFromCart');
+    Route::get('addToCart/{slug}',  'addToCart');
+    Route::get('removeFromCart/{slug}',  'removeFromCart');
+    Route::get('increaseQuantity/{slug}', 'increaseQuantity');
+    Route::get('decreaseQuantity/{slug}', 'decreaseQuantity');
 });

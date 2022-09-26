@@ -15,14 +15,43 @@ class JsonCartController extends Controller
     {
         return response()->json(["items" => auth()->user()->cart->products]);
     }
-    public function addToCart(Request $request, Item $item)
+    public function addToCart(Request $request, $slug)
     {
-        auth()->user()->cart()->attach($item->id);
+        $message = ["msg" => "added new product", 'code' => 0];
+        $products = auth()->user()->cart->products;
+        $product = $products->where('slug', $slug)->first();
+
+        $item = Item::where('slug', $slug)->first();
+        if ($products->contains($item)) {
+            $product->pivot->qta += 1;
+            $product->pivot->save();
+            $message['msg'] = "incremented quantity";
+            $message['code'] = 1;
+        } else {
+            auth()->user()->cart->products()->attach($item->id);
+        }
+        return response()->json($message);
+    }
+    public function removeFromCart(Request $request, $slug)
+    {
+        $item = Item::where('slug', $slug)->first();
+        auth()->user()->cart->products()->detach($item->id);
         return response()->json();
     }
-    public function removeFromCart(Request $request, Item $item)
+    public function increaseQuantity(Request $request, $slug)
     {
-        auth()->user()->cart()->detach($item->id);
+        $item = Item::where('slug', $slug)->first();
+        $product = auth()->user()->cart->products->where('id', $item->id)->first();
+        $product->pivot->qta += 1;
+        $product->pivot->save();
+        return response()->json();
+    }
+    public function decreaseQuantity(Request $request, $slug)
+    {
+        $item = Item::where('slug', $slug)->first();
+        $product = auth()->user()->cart->products->where('id', $item->id)->first();
+        $product->pivot->qta -= 1;
+        $product->pivot->save();
         return response()->json();
     }
 }
