@@ -3,6 +3,7 @@
 namespace Giuszeppe\AwesomeLaravelCart\Models;
 
 use App\Models\User;
+use Giuszeppe\AwesomeLaravelCart\Facades\Item;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Http;
@@ -20,6 +21,6 @@ class Cart extends Model
     }
     public function products()
     {
-        return $this->belongsToMany(CartItem::class, config('cart.pivot_table'), config('cart.table') . '_id', config('cart.item_table') . '_id')->withPivot('qta');
+        return $this->belongsToMany(config('cart.item'), config('cart.pivot_table'), config('cart.table') . '_id', config('cart.item_table') . '_id')->withPivot('qta');
     }
 }
