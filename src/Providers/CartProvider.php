@@ -19,7 +19,13 @@ class CartProvider extends ServiceProvider
 
         #This is necessary cause of inability of auth()->user() to fetch current user if the AuthServiceProvider is loaded *after* CartProvider.
         view()->composer('*', function ($view) {
-            $view->with('items', auth()->user()->cart->products ?? []);
+            if (auth()->user()) {
+                $view->with('items', auth()->user()->cart->products);
+                $view->with('totalPrice', auth()->user()->cart->totalPrice());
+            } else {
+                $view->with('items', []);
+                $view->with('totalPrice', 0);
+            }
         }); # pass to all routes the cart items
         // Product Facade
         $this->app->bind('item', function ($app) {

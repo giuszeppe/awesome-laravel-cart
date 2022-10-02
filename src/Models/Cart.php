@@ -23,4 +23,10 @@ class Cart extends Model
     {
         return $this->belongsToMany(config('cart.item'), config('cart.pivot_table'), config('cart.table') . '_id', config('cart.item_table') . '_id')->withPivot('qta');
     }
+    public function totalPrice()
+    {
+        return $this->products->sum(function ($item) {
+            return $item->price * $item->pivot->qta;
+        });
+    }
 }

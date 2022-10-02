@@ -44,7 +44,7 @@ class JsonCartController extends Controller
         $product = auth()->user()->cart->products->where('id', $item->id)->first();
         $product->pivot->qta += 1;
         $product->pivot->save();
-        return response()->json();
+        return response()->json(['qta' => $product->pivot->qta, 'price' => $product->price]);
     }
     public function decreaseQuantity(Request $request, $slug)
     {
@@ -52,6 +52,6 @@ class JsonCartController extends Controller
         $product = auth()->user()->cart->products->where('id', $item->id)->first();
         $product->pivot->qta -= 1;
         $product->pivot->save();
-        return response()->json();
+        return response()->json(['qta' => $product->pivot->qta, 'price' => $product->price]);
     }
 }
