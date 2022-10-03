@@ -16,8 +16,6 @@ class CartProvider extends ServiceProvider
      */
     public function boot()
     {
-
-        #This is necessary cause of inability of auth()->user() to fetch current user if the AuthServiceProvider is loaded *after* CartProvider.
         view()->composer('*', function ($view) {
             if (auth()->user()) {
                 $view->with('items', auth()->user()->cart->products);

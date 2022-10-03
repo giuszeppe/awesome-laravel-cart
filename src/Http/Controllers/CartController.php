@@ -12,7 +12,11 @@ class CartController extends Controller
     public function index()
     {
         $items = [];
-        if (Auth::check()) $items = auth()->user()->cart->products;
-        return view(config('cart.cart_view'), ["items" => $items]);
+        $totalPrice = 0;
+        if (Auth::check()) {
+            $items = auth()->user()->cart->products;
+            $totalPrice = auth()->user()->cart->totalPrice();
+        }
+        return view(config('cart.cart_view'), ["items" => $items, "totalPrice" => $totalPrice]);
     }
 }
