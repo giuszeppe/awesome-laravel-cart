@@ -34,7 +34,7 @@ class JsonCartController extends Controller
     }
     public function removeFromCart(Request $request, $slug)
     {
-        $item = Item::where('slug', $slug)->first();
+        $item = auth()->user()->cart->products()->where('slug', $slug)->first();
         $totalPrice = $item->price * $item->pivot->qta;
         auth()->user()->cart->products()->detach($item->id);
         return response()->json(['totalPrice' => $totalPrice]);
