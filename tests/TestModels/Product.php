@@ -16,7 +16,7 @@ class Product extends CartItem
 
 
 
-    protected static function newFactory()
+    protected static function newFactory(): ProductFactory
     {
         return \Giuszeppe\AwesomeLaravelCart\Tests\TestModels\ProductFactory::new();
     }

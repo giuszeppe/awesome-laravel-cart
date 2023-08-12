@@ -12,7 +12,7 @@ class ProductFactory extends Factory
      * @return array
      */
     public $model = Product::class;
-    public function definition()
+    public function definition(): array
     {
 
         return [
